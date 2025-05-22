@@ -17,12 +17,11 @@ vi.mock("./services/api", () => {
   };
 })
 
-describe('App', () => {
-  it('renders without crashing', async () => {
+describe("App", () => {
+  it("renders without crashing", async () => {
     await act(async () => {
       render(<App />);
     });
-
     expect(screen.getByTestId("line-chart")).toBeInTheDocument();
   });
 });
