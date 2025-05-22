@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import App from './App';
 import '../tests/setup.ts';
@@ -17,11 +17,13 @@ vi.mock("./services/api", () => {
   };
 })
 
-describe('App', () => {
-  it('renders without crashing', () => {
-    render(<App />);
-    // Example: check for a heading or text in your App component
-    // Replace 'Welcome' with actual text from your App
+describe("App", () => {
+  it("renders without crashing", async () => {
+    // Envolve a renderização em act para capturar atualizações de estado
+    await act(async () => {
+      render(<App />);
+    });
+    // Agora fazemos a asserção após as atualizações
     expect(screen.getByTestId("line-chart")).toBeInTheDocument();
   });
 });
