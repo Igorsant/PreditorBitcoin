@@ -31,7 +31,7 @@ expect(data).toHaveProperty("prices");
   });
 
   it("deve lidar com erro de requisição", async () => {
-    (global.fetch as any).mockImplementationOnce(() =>
+    vi.spyOn(global, "fetch").mockImplementationOnce(() =>
       Promise.reject(new Error("Falha na requisição"))
     );
     
