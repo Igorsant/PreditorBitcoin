@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import App from './App';
 import '../tests/setup.ts';
@@ -18,10 +18,11 @@ vi.mock("./services/api", () => {
 })
 
 describe('App', () => {
-  it('renders without crashing', () => {
-    render(<App />);
-    // Example: check for a heading or text in your App component
-    // Replace 'Welcome' with actual text from your App
+  it('renders without crashing', async () => {
+    await act(async () => {
+      render(<App />);
+    });
+
     expect(screen.getByTestId("line-chart")).toBeInTheDocument();
   });
 });
