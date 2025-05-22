@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { fetchAPIData } from "./services/api";
 import { BuyOrSell } from "./components/buy_sell";
+import TradeSimulator from "./components/trade_simulator";
 
 function App() {
   const [chartData, setChartData] = useState<{ time: string[]; prices: number[] }>({
@@ -37,13 +38,14 @@ function App() {
 
   return (
     <>
-    <LineChart
-      data-testid="line-chart"
-      height={300}
-      xAxis={[{ data: chartData.time, scaleType: "point", label: "Time" }]}
-      series={[{ data: chartData.prices, label: "BTC Price (USD)" }]}
-    />
+      <LineChart
+        data-testid="line-chart"
+        height={300}
+        xAxis={[{ data: chartData.time, scaleType: "point", label: "Time" }]}
+        series={[{ data: chartData.prices, label: "BTC Price (USD)" }]}
+      />
       <BuyOrSell />
+      <TradeSimulator /> {/* Adicionado para exibir o simulador de trade */}
     </>
   );
 }
