@@ -19,11 +19,9 @@ vi.mock("./services/api", () => {
 
 describe("App", () => {
   it("renders without crashing", async () => {
-    // Envolve a renderização em act para capturar atualizações de estado
     await act(async () => {
       render(<App />);
     });
-    // Agora fazemos a asserção após as atualizações
     expect(screen.getByTestId("line-chart")).toBeInTheDocument();
   });
 });
