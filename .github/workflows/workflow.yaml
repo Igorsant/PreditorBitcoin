@@ -24,6 +24,7 @@ jobs:
     - run: yarn build
     - name: Run tests
       run: |
+          yarn test:coverage
           coverage_percentage=$(yarn test:coverage | grep "All files" | awk '{print $10}')
           if [[ $coverage_percentage < 80 ]]; then
             echo "Code coverage is below 80%. Current coverage: $coverage_percentage%"
