@@ -1,4 +1,4 @@
-import { act, render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import App from './App';
 import '../tests/setup.ts';
@@ -17,12 +17,11 @@ vi.mock("./services/api", () => {
   };
 })
 
-describe('App', () => {
-  it('renders without crashing', async () => {
+describe("App", () => {
+  it("renders without crashing", async () => {
     await act(async () => {
       render(<App />);
     });
-
     expect(screen.getByTestId("line-chart")).toBeInTheDocument();
   });
 });
