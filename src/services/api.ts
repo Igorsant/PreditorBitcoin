@@ -12,3 +12,18 @@ export const fetchAPIData = async () => {
   );
   return await response.json();
 };
+
+export const fetchCurrentPrice = async () => {
+  const response = await fetch(
+    "https://api.coingecko.com/api/v3/coins/bitcoin",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        x_cg_demo_api_key: API_KEY,
+      },
+    }
+  );
+  const data = await response.json();
+  return data;
+}
