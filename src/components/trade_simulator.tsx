@@ -1,10 +1,8 @@
-// src/components/trade_simulator.tsx
 import React, { useState, useEffect } from "react";
 import type { ChangeEvent } from "react";
-import { fetchAPIData } from "../services/api";
+import { fetchCurrentPrice } from "../services/api";
 
 const TradeSimulator: React.FC = () => {
-  // Inicializa os saldos a partir do localStorage (lazy initialization)
   const [btc, setBtc] = useState<number>(() => {
     const saved = localStorage.getItem("tradeBalances");
     if (saved) {
@@ -44,16 +42,13 @@ const TradeSimulator: React.FC = () => {
 
   // Busca o preço atual da API assim que o componente monta
   useEffect(() => {
-    fetchAPIData()
+    fetchCurrentPrice()
       .then((data) => {
-        if (data.prices && data.prices.length > 0) {
-          const latestPrice = data.prices[data.prices.length - 1][1];
-          setPrice(latestPrice);
-        } else {
-          setErr("Dados inválidos da API.");
-        }
+        setPrice(data.market_data.current_price.usd);
       })
-      .catch(() => setErr("Erro ao buscar o preço."))
+      .catch(() => {
+        setErr("Erro ao buscar preço.");
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -81,7 +76,7 @@ const TradeSimulator: React.FC = () => {
     <div
       style={{
         position: "fixed",
-        top: window.innerHeight / 2 +40,
+        top: window.innerHeight / 2 + 40,
         right: window.innerWidth / 2,
         zIndex: 1000,
         padding: "1rem",
@@ -92,7 +87,7 @@ const TradeSimulator: React.FC = () => {
         backgroundColor: "#fff",
       }}
     >
-       <h1 style={{ marginBottom: ".5rem", fontSize: "1.2rem" }}>
+      <h1 style={{ marginBottom: ".5rem", fontSize: "1.2rem" }}>
         Simulador de Trade
       </h1>
       {loading ? (
