@@ -14,8 +14,13 @@ vi.mock("./services/api", () => {
         ],
       });
     }),
+    fetchCurrentPrice: vi.fn(() => {
+      return Promise.resolve({
+        market_data: { current_price: { usd: 31000 } }
+      });
+    }),
   };
-})
+});
 
 describe("App", () => {
   it("renders without crashing", async () => {
