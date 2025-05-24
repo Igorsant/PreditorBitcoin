@@ -1,4 +1,3 @@
-// C:\Users\tiago\PreditorBitcoin\src\components\buy_sell.test.tsx
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import { BuyOrSell } from "./buy_sell";
