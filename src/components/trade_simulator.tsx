@@ -107,10 +107,10 @@ const TradeSimulator: React.FC = () => {
         }}
       >
         <div>
-          <p style={{ margin: 0 }}>
+          <p  data-testid="saldo-btc" style={{ margin: 0 }}>
             <strong>BTC:</strong> {btc.toFixed(4)}
           </p>
-          <p style={{ margin: 0 }}>
+          <p data-testid="saldo-usd" style={{ margin: 0 }}>
             <strong>USD:</strong> ${usd.toFixed(2)}
           </p>
         </div>
